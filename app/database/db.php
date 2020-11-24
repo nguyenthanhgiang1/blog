@@ -21,18 +21,23 @@ function selectAll($table,$conditions=[])
         $records=$stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         return $records;
     }else{
-        //dfsdklf
-        // $sql="select * from $table where username='Awa' and admin=1 ";
         $i=0;
        foreach($conditions as $key => $value){
            if($i===0){
-            $sql=$sql." where $key=$value";
+            $sql=$sql." where $key=?";
            }else{
-            $sql=$sql." and $key=$value";
+            $sql=$sql." and $key=?";
            }
            $i++;
        }
-       dd($sql);
+       
+       $stmt=$conn->prepare($sql);
+       $values=array_values($conditions);
+       $types=str_repeat('s',count($values));
+       $stmt->bind_param($types,...$values);
+       $stmt->execute();
+       $records=$stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+       return $records;
 
     }
  
