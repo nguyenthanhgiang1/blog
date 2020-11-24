@@ -6,8 +6,16 @@ function dd($value){
     die();
 }
 
-
-
+function executeQuery($sql,$data)
+{
+    global $conn;
+   $stmt= $conn->prepare($sql);
+       $values=array_values($data);
+       $types=str_repeat('s',count($values));
+       $stmt->bind_param($types,...$values);
+       $stmt->execute();
+    return $stmt;
+}
 
 
 
@@ -30,21 +38,37 @@ function selectAll($table,$conditions=[])
            }
            $i++;
        }
-       
-       $stmt=$conn->prepare($sql);
-       $values=array_values($conditions);
-       $types=str_repeat('s',count($values));
-       $stmt->bind_param($types,...$values);
-       $stmt->execute();
+       $stmt=executeQuery($sql,$conditions);
        $records=$stmt->get_result()->fetch_all(MYSQLI_ASSOC);
        return $records;
 
     }
  
 }
+function selectOne($table,$conditions)
+{
+    global $conn;
+    $sql="select * from $table";
+
+        $i=0;
+       foreach($conditions as $key => $value){
+           if($i===0){
+            $sql=$sql." where $key=?";
+           }else{
+            $sql=$sql." and $key=?";
+           }
+           $i++;
+       }
+       $sql=$sql." limit 1";
+       $stmt=executeQuery($sql,$conditions);
+     
+       $records=$stmt->get_result()->fetch_assoc();
+       return $records;
+}
+
 $conditions=[
-'admin'=>1,
+'admin'=>0,
 'username'=>'Awa'
 ];
-$users = selectALL('users',$conditions);
+$users = selectOne('users',$conditions);
 dd($users);
