@@ -1,14 +1,13 @@
 <?php
  require('connect.php');
 
+
+
+
 function dd($value){
     echo "<pre>",print_r($value,true),"</pre>";
     die();
 }
-
-
-
-
 
 
 function executeQuery($sql,$data)
@@ -42,13 +41,14 @@ function selectAll($table,$conditions=[])
            }
            $i++;
        }
+
        $stmt=executeQuery($sql,$conditions);
        $records=$stmt->get_result()->fetch_all(MYSQLI_ASSOC);
        return $records;
-
     }
- 
 }
+
+
 
 function selectOne($table,$conditions)
 {
@@ -60,13 +60,13 @@ function selectOne($table,$conditions)
            if($i===0){
             $sql=$sql." where $key=?";
            }else{
-            $sql=$sql." AND $key=?";
+            $sql=$sql." and $key=?";
            }
            $i++;
        }
+
        $sql=$sql." limit 1";
        $stmt=executeQuery($sql,$conditions);
-     
        $records=$stmt->get_result()->fetch_assoc();
        return $records;
 }
@@ -76,7 +76,7 @@ function create($table,$data)
 {
     global $conn;
 
-    $sql="insert into users set";
+    $sql="insert into users set ";
 
     $i=0;
        foreach($data as $key => $value){
@@ -87,6 +87,7 @@ function create($table,$data)
            }
            $i++;
        }
+
     $stmt=executeQuery($sql,$data);
     $id=$stmt->insert_id;
     return $id;
@@ -98,5 +99,6 @@ $data=[
     'email'=>'melvine@melvine.com',
     'password'=>'melvine'
 ];
-$users = create('users',$data);
-dd($users);
+
+$id = create('users',$data );
+dd($id);
