@@ -1,7 +1,7 @@
 <?php
 include("C:/xampp/htdocs/blog/app/database/db.php");
 include("C:/xampp/htdocs/blog/app/helpers/validateUser.php");
-
+$errors=array();
 $username ='';
 $email ='';
 $password ='';
