@@ -3,7 +3,7 @@
 
 
 
-
+// in ra gia tri truyen vao
 function dd($value){
     echo "<pre>",print_r($value,true),"</pre>";
     die();
@@ -71,12 +71,12 @@ function selectOne($table,$conditions)
        return $records;
 }
 
-
+//them moi
 function create($table,$data)
 {
     global $conn;
 
-    $sql="insert into users set ";
+    $sql="insert into $table set ";
 
     $i=0;
        foreach($data as $key => $value){
@@ -93,12 +93,47 @@ function create($table,$data)
     return $id;
 }
 
-$data=[
-    'username'=>'Melvine',
-    'admin'=>1,
-    'email'=>'melvine@melvine.com',
-    'password'=>'melvine'
-];
 
-$id = create('users',$data );
+
+function update($table,$id,$data)
+{
+    global $conn;
+
+    $sql="update $table set ";
+
+    $i=0;
+       foreach($data as $key => $value){
+           if($i===0){
+            $sql=$sql." $key=?";
+           }else{
+            $sql=$sql.", $key=?";
+           }
+           $i++;
+       }
+     
+       $sql=$sql." where id=?";
+       $data['id'] = $id;
+       $stmt=executeQuery($sql,$data);
+    return $stmt->affected_rows;
+}
+
+
+
+function delete($table,$id)
+{
+    global $conn;
+    $sql="delete from $table where id=?";
+
+    $stmt=executeQuery($sql,['id'=>$id]);
+    return $stmt->affected_rows;
+}
+
+// $data=[
+//     'username'=>'Awa Melvine',
+//     'admin'=>1,
+//     'email'=>'melvine@melvine.com',
+//     'password'=>'melvine'
+// ];
+
+$id = delete('users',2);
 dd($id);
