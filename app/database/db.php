@@ -6,6 +6,11 @@ function dd($value){
     die();
 }
 
+
+
+
+
+
 function executeQuery($sql,$data)
 {
     global $conn;
@@ -16,7 +21,6 @@ function executeQuery($sql,$data)
        $stmt->execute();
     return $stmt;
 }
-
 
 
 function selectAll($table,$conditions=[])
@@ -45,6 +49,7 @@ function selectAll($table,$conditions=[])
     }
  
 }
+
 function selectOne($table,$conditions)
 {
     global $conn;
@@ -55,7 +60,7 @@ function selectOne($table,$conditions)
            if($i===0){
             $sql=$sql." where $key=?";
            }else{
-            $sql=$sql." and $key=?";
+            $sql=$sql." AND $key=?";
            }
            $i++;
        }
@@ -65,9 +70,14 @@ function selectOne($table,$conditions)
        $records=$stmt->get_result()->fetch_assoc();
        return $records;
 }
-function create($table,$data){
+
+
+function create($table,$data)
+{
     global $conn;
+
     $sql="insert into users set";
+
     $i=0;
        foreach($data as $key => $value){
            if($i===0){
@@ -81,11 +91,12 @@ function create($table,$data){
     $id=$stmt->insert_id;
     return $id;
 }
+
 $data=[
     'username'=>'Melvine',
     'admin'=>1,
     'email'=>'melvine@melvine.com',
     'password'=>'melvine'
 ];
-$id = create('users',$data);
-dd($id);
+$users = create('users',$data);
+dd($users);
