@@ -135,5 +135,3 @@ function delete($table,$id)
 //     'password'=>'melvine'
 // ];
 
-$id = delete('users',2);
-dd($id);

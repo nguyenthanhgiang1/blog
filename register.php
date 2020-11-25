@@ -1,4 +1,6 @@
-
+<?php 
+include("app/controllers/users.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +17,7 @@
 <body>
 <?php include("app/includes/header.php") ?>
     <div class="auth-content">
-        <form action="register.html" method="post">
+        <form action="register.php" method="post">
             <h2 class="form-title">Register</h2>
             <!-- <div class="msg error">
                 <li>Username required</li>
