@@ -5,36 +5,12 @@
         <ul>
             <li>
                 <a href="#">Home</a>
-                <ul>
-                    <li>
-                        <a href="#">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#">Logout</a>
-                    </li>
-                </ul>
             </li>
             <li>
                 <a href="#">About</a>
-                <ul>
-                    <li>
-                        <a href="#">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#">Logout</a>
-                    </li>
-                </ul>
             </li>
             <li>
                 <a href="#">Services</a>
-                <ul>
-                    <li>
-                        <a href="#">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#">Logout</a>
-                    </li>
-                </ul>
             </li>
 
 
@@ -52,13 +28,13 @@
                     </li>
                      <?php endif; ?>
                     <li>
-                        <a href="#">Logout</a>
+                        <a href="<?php echo 'logout.php';?>">Logout</a>
                     </li>
                 </ul>
             </li>
              <?php else: ?>
-             <li><a href="<?php echo 'C:/xampp/htdocs/blog/register.php';?>">Sign Up</a></li>
-             <li><a href="<?php echo 'C:/xampp/htdocs/blog/login.php';?>">Login</a></li>
+             <li><a href="<?php echo 'register.php';?>">Sign Up</a></li>
+             <li><a href="<?php echo 'login.php';?>">Login</a></li>
              <?php endif; ?>
 
        
