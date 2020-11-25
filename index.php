@@ -1,3 +1,6 @@
+<?php
+include("C:/xampp/htdocs/blog/app/database/db.php")
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +16,7 @@
 
 <body>
     <?php include("app/includes/header.php");?>
+    <?php include("app/includes/messages.php");?>
     <!-- <div class="hu">a</div> -->
     <!--  -->
     <div class="page-wrapper">
