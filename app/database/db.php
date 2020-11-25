@@ -65,10 +65,27 @@ function selectOne($table,$conditions)
        $records=$stmt->get_result()->fetch_assoc();
        return $records;
 }
-
-$conditions=[
-'admin'=>0,
-'username'=>'Awa'
+function create($table,$data){
+    global $conn;
+    $sql="insert into users set";
+    $i=0;
+       foreach($data as $key => $value){
+           if($i===0){
+            $sql=$sql." $key=?";
+           }else{
+            $sql=$sql.", $key=?";
+           }
+           $i++;
+       }
+    $stmt=executeQuery($sql,$data);
+    $id=$stmt->insert_id;
+    return $id;
+}
+$data=[
+    'username'=>'Melvine',
+    'admin'=>1,
+    'email'=>'melvine@melvine.com',
+    'password'=>'melvine'
 ];
-$users = selectOne('users',$conditions);
-dd($users);
+$id = create('users',$data);
+dd($id);
