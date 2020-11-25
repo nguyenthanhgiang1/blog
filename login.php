@@ -1,4 +1,4 @@
-
+<?php include("app/controllers/users.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,20 +15,23 @@
 <body>
 <?php include("app/includes/header.php") ?>
     <div class="auth-content">
-        <form action="login.html" method="post">
+        <form action="login.php" method="post">
             <h2 class="form-title">Login</h2>
+
+            <?php include("app/helpers/formErrors.php") ?>
+
             <div>
                 <label for="">Username</label>
-                <input type="text" name="username" class="text-input">
+                <input type="text" name="username" value="<?php echo $username; ?>" class="text-input">
             </div>
             <div>
                 <label for="">Password</label>
-                <input type="password" name="password" class="text-input">
+                <input type="password" name="password"  value="<?php echo $password; ?>" class="text-input">
             </div>
             <div>
                 <button type="submit" name="login-btn" class="btn btn-big">Login</button>
             </div>
-            <p>Or <a href="register.html">Sign Up</a></p>
+            <p>Or <a href="<?php echo "register.php" ?>">Sign Up</a></p>
         </form>
     </div>
     <!-- video7 -->
