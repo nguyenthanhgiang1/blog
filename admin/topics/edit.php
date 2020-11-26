@@ -1,4 +1,4 @@
-
+<?php include("C:/xampp/htdocs/blog/app/controllers/topics.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,24 +25,18 @@
 
             <div class="content">
                 <h2 class="page-title">Edit Topic</h2>
-                <form action="create.html" method="post">
+                <form action="edit.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo $id; ?>" id="">
                     <div>
                         <label for="">Name</label>
-                        <input type="text" name="name" id="" class="text-input">
+                        <input type="text" name="name" value="<?php echo $name; ?>" id="" class="text-input">
                     </div>
                     <div>
                         <label for="">Description</label>
-                        <textarea name="description" id="body"></textarea>
+                        <textarea name="description" id="body"><?php echo $description; ?></textarea>
                     </div>
-                    <!-- <div>
-                        <label for="">Topic</label>
-                        <select name="topic" id="" class="text-input">
-                            <option value="Poetry">Poetry</option>
-                            <option value="Life Lessions">Life Lessions</option>
-                        </select>
-                    </div> -->
                     <div>
-                        <buttom type="submit" class="btn btn-big">Update Topic</buttom>
+                        <input type="submit" class="btn btn-big" value="Update Topic" name="update-topic"></input>
                     </div>
                 </form>
             </div>

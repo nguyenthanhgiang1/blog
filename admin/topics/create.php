@@ -1,4 +1,4 @@
-
+<?php include("C:/xampp/htdocs/blog/app/controllers/topics.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,24 +25,17 @@
 
             <div class="content">
                 <h2 class="page-title">Add Topic</h2>
-                <form action="create.html" method="post">
+                <form action="create.php" method="post">
                     <div>
-                        <label for="">Name</label>
+                        <label>Name</label>
                         <input type="text" name="name" id="" class="text-input">
                     </div>
                     <div>
-                        <label for="">Description</label>
+                        <label>Description</label>
                         <textarea name="description" id="body"></textarea>
                     </div>
-                    <!-- <div>
-                        <label for="">Topic</label>
-                        <select name="topic" id="" class="text-input">
-                            <option value="Poetry">Poetry</option>
-                            <option value="Life Lessions">Life Lessions</option>
-                        </select>
-                    </div> -->
                     <div>
-                        <buttom type="submit" class="btn btn-big">Add Topic</buttom>
+                        <input type="submit" name="add-topic" class="btn btn-big" value="Add Topic"></input>
                     </div>
                 </form>
             </div>
