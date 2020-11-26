@@ -1,4 +1,4 @@
-
+<?php include('C:/xampp/htdocs/blog/app/controllers/users.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +25,7 @@
 
             <div class="content">
                 <h2 class="page-title">Add User</h2>
-                <form action="create.html" method="post">
+                <form action="create.php" method="post">
                     <div>
                         <label for="">Username</label>
                         <input type="text" name="username" class="text-input">
@@ -43,14 +43,14 @@
                         <input type="password" name="passwordConf" class="text-input">
                     </div>
                     <div>
-                        <label for="">Role</label>
-                        <select name="role" id="" class="text-input">
-                            <option value="Author">Author</option>
-                            <option value="Admin">Admin</option>
-                        </select>
+                        <label for="">
+                        <input type="checkbox" name="admin" value="">
+                               Admin
+                        </label>
+                       
                     </div>
                     <div>
-                        <buttom type="submit" class="btn btn-big">Add User</buttom>
+                        <input type="submit" name="create-admin" class="btn btn-big" value="Add User"></input>
                     </div>
                 </form>
             </div>

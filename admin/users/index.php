@@ -1,4 +1,4 @@
-
+<?php include("C:/xampp/htdocs/blog/app/controllers/users.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +25,7 @@
 
             <div class="content">
                 <h2 class="page-title">Manage Users</h2>
+                <?php include('C:/xampp/htdocs/blog/app/includes/messages.php'); ?>
                 <table>
                     <thead>
                         <th>SN</th>
