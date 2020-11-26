@@ -26,7 +26,7 @@
             <div class="content">
                 <h2 class="page-title">Add Post</h2>
                 <?php include('C:\xampp\htdocs\blog\app\helpers\formErrors.php'); ?>
-                <form action="create.php" method="post">
+                <form action="create.php" method="post" enctype="multipart/form-data">
                     <div>
                         <label for="">Title</label>
                         <input type="text" name="title" id="" value="<?php echo $title ?>" class="text-input">
@@ -56,9 +56,19 @@
                         </select>
                     </div>
                     <div>
-                    <label for="">
-                         <input type="checkbox" name="published">Publish
+                    <?php if(empty($published)): ?>
+                        <label for="">
+                         <input type="checkbox" name="published">
+                         Publish
                     </label>
+                    <?php else: ?>
+                        <label for="">
+                         <input type="checkbox" name="published" checked>
+                         Publish
+                    </label>
+                    <?php endif; ?>
+                 
+
                     </div>
                     <div>
                         <input type="submit" name="add-post" class="btn btn-big" value="Add Post"></input>
