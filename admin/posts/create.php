@@ -1,4 +1,4 @@
-
+<?php include("C:/xampp/htdocs/blog/app/controllers/posts.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +25,7 @@
 
             <div class="content">
                 <h2 class="page-title">Add Post</h2>
-                <form action="create.html" method="post">
+                <form action="create.php" method="post">
                     <div>
                         <label for="">Title</label>
                         <input type="text" name="title" id="" class="text-input">
@@ -40,13 +40,16 @@
                     </div>
                     <div>
                         <label for="">Topic</label>
-                        <select name="topic" id="" class="text-input">
-                            <option value="Poetry">Poetry</option>
-                            <option value="Life Lessions">Life Lessions</option>
+                        <select name="topic_id" id="" class="text-input">
+                            <option value=""></option>
+                            <?php foreach($topics as $key=>$topic): ?>
+                            <option value="<?php echo $topic['id'] ?>"><?php echo $topic['name'] ?></option>
+                            <?php endforeach; ?>
+
                         </select>
                     </div>
                     <div>
-                        <buttom type="submit" class="btn btn-big">Add Post</buttom>
+                        <input type="submit" name="add-post" class="btn btn-big" value="Add Post"></input>
                     </div>
                 </form>
             </div>
