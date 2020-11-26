@@ -40,7 +40,7 @@
                             <td>
                                 <a href="edit.php?id=<?php echo $topic['id'];?>" class="edit">edit</a></td>
                             <td>
-                                <a href="#" class="delete">delete</a></td>
+                                <a href="index.php?del_id=<?php echo $topic['id'];?>" class="delete">delete</a></td>
                         </tr>
                        <?php endforeach; ?>
                         

@@ -1,5 +1,6 @@
 <?php
-include("C:/xampp/htdocs/blog/app/database/db.php")
+// include("C:/xampp/htdocs/blog/app/database/db.php");
+include("C:/xampp/htdocs/blog/app/controllers/topics.php"); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -123,13 +124,10 @@ include("C:/xampp/htdocs/blog/app/database/db.php")
                 <div class="section toppics">
                     <h2 class="section-title">Toppics</h2>
                     <ul>
-                        <li><a href="#">Poems</a></li>
-                        <li><a href="#">Quotes</a></li>
-                        <li><a href="#">Fiction</a></li>
-                        <li><a href="#">Biography</a></li>
-                        <li><a href="#">Motivation</a></li>
-                        <li><a href="#">Inspiration</a></li>
-                        <li><a href="#">Life lessons</a></li>
+
+                    <?php foreach($topics as $key =>$topic): ?>
+                        <li><a href="#"><?php echo $topic['name']; ?></a></li>
+                       <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
