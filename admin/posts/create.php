@@ -28,11 +28,11 @@
                 <form action="create.php" method="post">
                     <div>
                         <label for="">Title</label>
-                        <input type="text" name="title" id="" class="text-input">
+                        <input type="text" name="title" id="" value="<?php echo $title ?>" class="text-input">
                     </div>
                     <div>
                         <label for="">Body</label>
-                        <textarea name="body" id="body"></textarea>
+                        <textarea name="body" id="body"><?php echo $body ?></textarea>
                     </div>
                     <div>
                         <label for="">Image</label>
@@ -43,7 +43,13 @@
                         <select name="topic_id" id="" class="text-input">
                             <option value=""></option>
                             <?php foreach($topics as $key=>$topic): ?>
-                            <option value="<?php echo $topic['id'] ?>"><?php echo $topic['name'] ?></option>
+                            <?php if(!empty($topic_id)&& $topic_id==$topic['id']): ?>
+                            <option selected value="<?php echo $topic['id'] ?>"><?php echo $topic['name'] ?></option>
+                            <?php else: ?>
+                                <option value="<?php echo $topic['id'] ?>"><?php echo $topic['name'] ?></option>
+                            <?php endif; ?>
+                            
+
                             <?php endforeach; ?>
 
                         </select>
