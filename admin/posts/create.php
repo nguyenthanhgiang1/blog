@@ -25,6 +25,7 @@
 
             <div class="content">
                 <h2 class="page-title">Add Post</h2>
+                <?php include('C:\xampp\htdocs\blog\app\helpers\formErrors.php'); ?>
                 <form action="create.php" method="post">
                     <div>
                         <label for="">Title</label>
@@ -53,6 +54,11 @@
                             <?php endforeach; ?>
 
                         </select>
+                    </div>
+                    <div>
+                    <label for="">
+                         <input type="checkbox" name="published">Publish
+                    </label>
                     </div>
                     <div>
                         <input type="submit" name="add-post" class="btn btn-big" value="Add Post"></input>

@@ -25,6 +25,7 @@
 
             <div class="content">
                 <h2 class="page-title">Manage Posts</h2>
+                <?php include('C:/xampp/htdocs/blog/app/includes/messages.php'); ?>
                 <table>
                     <thead>
                         <th>SN</th>
