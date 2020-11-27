@@ -1,4 +1,4 @@
-
+<?php include('C:/xampp/htdocs/blog/app/controllers/users.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,32 +25,42 @@
 
             <div class="content">
                 <h2 class="page-title">Edit User</h2>
-                <form action="create.html" method="post">
-                    <div>
+                <?php include('C:\xampp\htdocs\blog\app\helpers\formErrors.php') ?>
+                <form action="edit.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $id; ?>" >
+                <div>
                         <label for="">Username</label>
-                        <input type="text" name="username" class="text-input">
+                        <input type="text" name="username" value="<?php echo $username; ?>" class="text-input">
                     </div>
                     <div>
                         <label for="">Email</label>
-                        <input type="email" name="email" class="text-input">
+                        <input type="email" name="email" value="<?php echo $email; ?>" class="text-input">
                     </div>
                     <div>
                         <label for="">Password</label>
-                        <input type="password" name="password" class="text-input">
+                        <input type="password" name="password" value="<?php echo $password; ?>" class="text-input">
                     </div>
                     <div>
                         <label for="">Password Confirmation</label>
-                        <input type="password" name="passwordConf" class="text-input">
+                        <input type="password" name="passwordConf" value="<?php echo $passwordConf; ?>" class="text-input">
                     </div>
                     <div>
-                        <label for="">Role</label>
-                        <select name="role" id="" class="text-input">
-                            <option value="Author">Author</option>
-                            <option value="Admin">Admin</option>
-                        </select>
+                    <?php if(isset($admin) && $admin==1):?>
+                        <label for="">
+                        <input type="checkbox" name="admin" value="" checked>
+                               Admin
+                        </label>
+                    <?php else: ?>
+                        <label for="">
+                        <input type="checkbox" name="admin" value="">
+                               Admin
+                        </label>
+                    <?php endif; ?>
+                        
+                       
                     </div>
                     <div>
-                        <buttom type="submit" class="btn btn-big">Update User</buttom>
+                        <input type="submit" name="update-user" class="btn btn-big" value="Update User"></input>
                     </div>
                 </form>
             </div>
