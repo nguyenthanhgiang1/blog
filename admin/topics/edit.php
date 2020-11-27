@@ -37,7 +37,7 @@
                         <textarea name="description" id="body"><?php echo $description; ?></textarea>
                     </div>
                     <div>
-                        <input type="submit" class="btn btn-big" value="Update Topic" name="update-topic"></input>
+                        <input type="submit" name="update-topic" class="btn btn-big" value="Update Topic" name="update-topic"></input>
                     </div>
                 </form>
             </div>
