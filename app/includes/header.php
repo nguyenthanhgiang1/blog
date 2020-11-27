@@ -24,7 +24,7 @@
                 <ul>
                      <?php if($_SESSION['admin']): ?>
                     <li>
-                        <a href="<?php echo 'C:/xampp/htdocs/blog/admin/dashboard.php';?>">Dashboard</a>
+                        <a href="<?php echo '/blog/admin/dashboard.php';?>">Dashboard</a>
                     </li>
                      <?php endif; ?>
                     <li>
