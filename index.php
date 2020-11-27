@@ -1,6 +1,18 @@
 <?php
 // include("C:/xampp/htdocs/blog/app/database/db.php");
 include("C:/xampp/htdocs/blog/app/controllers/topics.php"); 
+$post=array();
+$postsTitle='Recent Posts';
+
+// dd($posts);
+if(isset($_POST['search-term'])){
+    $postsTitle="You searched for '".$_POST['search-term']."'";
+   $posts= searchPosts($_POST['search-term']);
+}else{
+    $posts=getPulishedPosts();
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,98 +38,43 @@ include("C:/xampp/htdocs/blog/app/controllers/topics.php");
             <i class="glyphicon glyphicon-chevron-left prev"></i>
             <i class="glyphicon glyphicon-chevron-right next"></i>
             <div class="post-wrapper">
+            <?php foreach($posts as $key =>$post): ?>
                 <div class="post">
-                    <img src="assets/images/th.jpg" alt="" class="slider-image">
+                    <img src="<?php echo 'assets/images/'.$post['image']; ?>" alt="" class="slider-image">
                     <div class="post-info">
-                        <h4><a href="#">Designing a horizontal carousel with Slick JS</a></h4>
-                        <i class="fa fa-user-o" aria-hidden="true">AwaMelvine</i>&nbsp;
-                        <i class="glyphicon glyphicon-calendar">Mar 8,2020</i>
+                        <h4><a href="#"><?php echo $post['title']; ?></a></h4>
+                        <i class="fa fa-user-o" aria-hidden="true"><?php echo $post['username']; ?></i>&nbsp;
+                        <i class="glyphicon glyphicon-calendar"><?php echo date('F j, Y',strtotime($post['created_at'])); ?></i>
                     </div>
                 </div>
-                <div class="post">
-                    <img src="assets/images/th.jpg" alt="" class="slider-image">
-                    <div class="post-info">
-                        <h4><a href="#">Designing a horizontal carousel with Slick JS</a></h4>
-                        <i class="fa fa-user-o" aria-hidden="true">AwaMelvine</i>&nbsp;
-                        <i class="glyphicon glyphicon-calendar">Mar 8,2020</i>
-                    </div>
-                </div>
-                <div class="post">
-                    <img src="assets/images/th.jpg" alt="" class="slider-image">
-                    <div class="post-info">
-                        <h4><a href="#">Designing a horizontal carousel with Slick JS</a></h4>
-                        <i class="fa fa-user-o" aria-hidden="true">AwaMelvine</i>&nbsp;
-                        <i class="glyphicon glyphicon-calendar">Mar 8,2020</i>
-                    </div>
-                </div>
-                <div class="post">
-                    <img src="assets/images/th.jpg" alt="" class="slider-image">
-                    <div class="post-info">
-                        <h4><a href="#">Designing a horizontal carousel with Slick JS</a></h4>
-                        <i class="fa fa-user-o" aria-hidden="true">AwaMelvine</i>&nbsp;
-                        <i class="glyphicon glyphicon-calendar">Mar 8,2020</i>
-                    </div>
-                </div>
-                <div class="post">
-                    <img src="assets/images/th.jpg" alt="" class="slider-image">
-                    <div class="post-info">
-                        <h4><a href="#">Designing a horizontal carousel with Slick JS</a></h4>
-                        <i class="fa fa-user-o" aria-hidden="true">AwaMelvine</i>&nbsp;
-                        <i class="glyphicon glyphicon-calendar">Mar 8,2020</i>
-                    </div>
-                </div>
-                <!-- <div class="post">2</div>
-                <div class="post">3</div>
-                <div class="post">4</div>
-                <div class="post">5</div> -->
+            <?php endforeach; ?>
             </div>
         </div>
         <!-- nội dung -->
         <div class="content clearfix">
             <div class="main-content">
-                <h1 class="recent-post-title">Recent Posts</h1>
-                <div class="post">
-                    <img src="assets/images/th.jpg" alt="" class="post-image">
+                <h1 class="recent-post-title"><?php echo $postsTitle ?></h1>
+                <?php foreach($posts as $key =>$post): ?>
+                <div class="post clearfix">
+                    <img src="<?php echo 'assets/images/'.$post['image']; ?>" alt="" class="post-image">
                     <div class="post-preview">
-                        <h2><a href="#">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia, voluptatum.</a></h2>
-                        <i class="fa fa-user-o"> Awa Melvine</i> &nbsp;
-                        <i class="glyphicon glyphicon-calendar"> Mar 11,2019</i>
+                        <h2><a href="#"><?php echo $post['title']; ?></a></h2>
+                        <i class="fa fa-user-o"><?php echo $post['username']; ?></i> &nbsp;
+                        <i class="glyphicon glyphicon-calendar"><?php echo date('F j, Y',strtotime($post['created_at'])); ?></i>
                         <p class="preview">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam ipsam numquam a maxime, aliquid aut?
+                           <?php echo html_entity_decode(substr($post['body'],0,150).'...') ;?>
                         </p>
                         <a href="single.html" class="btn read-more">Read More</a>
                     </div>
                 </div>
-                <div class="post">
-                    <img src="assets/images/th.jpg" alt="" class="post-image">
-                    <div class="post-preview">
-                        <h2><a href="#">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia, voluptatum.</a></h2>
-                        <i class="fa fa-user-o"> Awa Melvine</i> &nbsp;
-                        <i class="glyphicon glyphicon-calendar"> Mar 11,2019</i>
-                        <p class="preview">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam ipsam numquam a maxime, aliquid aut?
-                        </p>
-                        <a href="single.html" class="btn read-more">Read More</a>
-                    </div>
-                </div>
-                <div class="post">
-                    <img src="assets/images/th.jpg" alt="" class="post-image">
-                    <div class="post-preview">
-                        <h2><a href="#">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia, voluptatum.</a></h2>
-                        <i class="fa fa-user-o"> Awa Melvine</i> &nbsp;
-                        <i class="glyphicon glyphicon-calendar"> Mar 11,2019</i>
-                        <p class="preview">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam ipsam numquam a maxime, aliquid aut?
-                        </p>
-                        <a href="single.html" class="btn read-more">Read More</a>
-                    </div>
-                </div>
+                <?php endforeach; ?>
+                
             </div>
             <!-- video 6 -->
             <div class="sidebar">
                 <div class="section search">
                     <h2 class="section-title">Search</h2>
-                    <form action="#" method="POST">
+                    <form action="index.php" method="POST">
                         <input type="text" name="search-term" class="text-input" placeholder="Search...">
                     </form>
                 </div>

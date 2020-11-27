@@ -129,10 +129,30 @@ function delete($table,$id)
     return $stmt->affected_rows;
 }
 
-// $data=[
-//     'username'=>'Awa Melvine',
-//     'admin'=>1,
-//     'email'=>'melvine@melvine.com',
-//     'password'=>'melvine'
-// ];
 
+function getPulishedPosts()
+{
+    global $conn;
+    $sql="select p.*, u.username from posts as p join users as u on p.user_id=u.id where p.published=?";
+
+    $stmt=executeQuery($sql,['published'=>1]);
+    $records=$stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}
+
+
+function searchPosts($term)
+{ 
+    $match='%'.$term.'%';
+    global $conn;
+    $sql="select p.*, u.username 
+          from posts as p 
+          join users as u 
+          on p.user_id=u.id 
+          where p.published=?
+          and p.title like ? or p.body like ?";
+
+    $stmt=executeQuery($sql,['published'=>1,'title'=>$match,'body'=>$match]);
+    $records=$stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}
