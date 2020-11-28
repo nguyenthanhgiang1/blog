@@ -2,11 +2,12 @@
 
 
 include("C:/xampp/htdocs/blog/app/database/db.php");
+include("C:/xampp/htdocs/blog/app/helpers/middleware.php");
 include("C:/xampp/htdocs/blog/app/helpers/validateUser.php");
 
 $table='users';
 
-$admin_users =selectAll($table,['admin'=>1]);
+$admin_users =selectAll($table);
 
 
 $errors=array();
@@ -63,6 +64,7 @@ if(isset($_POST['register-btn']) || isset($_POST['create-admin'])){
 }
 
 if(isset($_POST['update-user'])){
+    adminOnly();
     $errors=validateUser($_POST);
     if(count($errors)===0){
     $id=$_POST['id'];
@@ -89,7 +91,7 @@ if(isset($_GET['id']))
     $user=selectOne($table,['id'=>$_GET['id']]);
     $id=$user['id'];
     $username=$user['username'];
-    $admin=isset($user['admin']) ? 1 : 0;
+    $admin=$user['admin'];
     $email=$user['email'];
 }
 
@@ -109,6 +111,7 @@ if(isset($_POST['login-btn'])){
 }
 
 if(isset($_GET['delete_id'])){
+    adminOnly();
     $count=delete($table,$_GET['delete_id']);
     $_SESSION['message'] ="Admin user delete";
     $_SESSION['type'] ="success";

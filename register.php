@@ -1,5 +1,6 @@
 <?php 
 include("app/controllers/users.php");
+guestsOnly();
 ?>
 <!DOCTYPE html>
 <html lang="en">

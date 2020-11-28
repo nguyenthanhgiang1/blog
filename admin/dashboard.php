@@ -1,4 +1,4 @@
-<?php include("C:/xampp/htdocs/blog/app/controllers/posts.php") ?>
+<?php include("C:/xampp/htdocs/blog/app/controllers/posts.php");adminOnly(); ?>
 <!DOCTYPE html>
 <html lang="en">
 

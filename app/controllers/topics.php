@@ -1,5 +1,6 @@
 <?php
 include("C:/xampp/htdocs/blog/app/database/db.php");
+include("C:/xampp/htdocs/blog/app/helpers/middleware.php");
 include("C:/xampp/htdocs/blog/app/helpers/validateTopic.php");
 $table='topics';
 
@@ -10,6 +11,7 @@ $description='';
 $topics =selectAll($table);
 
 if(isset($_POST['add-topic'])){
+    adminOnly();
     $errors=validateTopic($_POST);
     if(count($errors)===0){
         unset($_POST['add-topic']);
@@ -32,6 +34,7 @@ $name=$topic['name'];
 $description=$topic['description'];
 }
 if(isset($_GET['del_id'])){
+    adminOnly();
     $id=$_GET['del_id'];
     $count =delete($table,$id);
     $_SESSION['message']='Topic deleted successfully'; 
@@ -40,6 +43,7 @@ if(isset($_GET['del_id'])){
     exit();
 }
 if(isset($_POST['update-topic'])){
+    adminOnly();
     $errors=validateTopic($_POST);
     if(count($errors)===0){
         $id=$_POST['id'];
