@@ -1,7 +1,10 @@
 <header>
-        <div class="logo">
+        <!-- <div class="logo">
             <h1><span>Awa</span>Inspires</h1>
-        </div>
+        </div> -->
+        <a class="logo" href="/blog/index.php">
+            <h1><span>Awa</span>Inspires</h1>
+        </a>
         <ul>
             <li>
                 <a href="#">Home</a>

@@ -1,4 +1,12 @@
+<?php include("app/controllers/posts.php");
 
+if(isset($_GET['id'])){
+    $post=selectOne('posts',['id'=>$_GET['id']]);
+
+}
+$topics =selectAll('topics');
+$posts= selectAll('posts',['published'=>1]);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +17,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Single Post</title>
+    <title><?php echo $post['title']; ?> | AwaInspires</title>
 </head>
 
 <body>
@@ -20,95 +28,33 @@
         <!-- nội dung -->
         <div class="content clearfix">
             <div class="main-content single">
-                <h1 class="post-title">This is the title of the Post</h1>
+                <h1 class="post-title"><?php echo $post['title']; ?></h1>
                 <div class="post-content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nobis error tempora aspernatur aliquam rerum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates vero aut, odio neque atque asperiores fuga quidem, esse deserunt, ab ipsum autem repellat corporis impedit architecto libero quo eveniet delectus?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, voluptatum voluptate. Fuga id cum, alias molestias accusantium molestiae fugit facilis aperiam animi sint praesentium rem ipsa qui rerum at ut pariatur corrupti vel
-                        nam natus similique enim sed. Beatae, nam.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, laborum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nobis error tempora aspernatur aliquam rerum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates vero aut, odio neque atque asperiores fuga quidem, esse deserunt, ab ipsum autem repellat corporis impedit architecto libero quo eveniet delectus?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, voluptatum voluptate. Fuga id cum, alias molestias accusantium molestiae fugit facilis aperiam animi sint praesentium rem ipsa qui rerum at ut pariatur corrupti vel
-                        nam natus similique enim sed. Beatae, nam.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, laborum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nobis error tempora aspernatur aliquam rerum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates vero aut, odio neque atque asperiores fuga quidem, esse deserunt, ab ipsum autem repellat corporis impedit architecto libero quo eveniet delectus?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, voluptatum voluptate. Fuga id cum, alias molestias accusantium molestiae fugit facilis aperiam animi sint praesentium rem ipsa qui rerum at ut pariatur corrupti vel
-                        nam natus similique enim sed. Beatae, nam.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, laborum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nobis error tempora aspernatur aliquam rerum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates vero aut, odio neque atque asperiores fuga quidem, esse deserunt, ab ipsum autem repellat corporis impedit architecto libero quo eveniet delectus?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, voluptatum voluptate. Fuga id cum, alias molestias accusantium molestiae fugit facilis aperiam animi sint praesentium rem ipsa qui rerum at ut pariatur corrupti vel
-                        nam natus similique enim sed. Beatae, nam.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, laborum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nobis error tempora aspernatur aliquam rerum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates vero aut, odio neque atque asperiores fuga quidem, esse deserunt, ab ipsum autem repellat corporis impedit architecto libero quo eveniet delectus?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, voluptatum voluptate. Fuga id cum, alias molestias accusantium molestiae fugit facilis aperiam animi sint praesentium rem ipsa qui rerum at ut pariatur corrupti vel
-                        nam natus similique enim sed. Beatae, nam.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, laborum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nobis error tempora aspernatur aliquam rerum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates vero aut, odio neque atque asperiores fuga quidem, esse deserunt, ab ipsum autem repellat corporis impedit architecto libero quo eveniet delectus?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, voluptatum voluptate. Fuga id cum, alias molestias accusantium molestiae fugit facilis aperiam animi sint praesentium rem ipsa qui rerum at ut pariatur corrupti vel
-                        nam natus similique enim sed. Beatae, nam.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, laborum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nobis error tempora aspernatur aliquam rerum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates vero aut, odio neque atque asperiores fuga quidem, esse deserunt, ab ipsum autem repellat corporis impedit architecto libero quo eveniet delectus?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, voluptatum voluptate. Fuga id cum, alias molestias accusantium molestiae fugit facilis aperiam animi sint praesentium rem ipsa qui rerum at ut pariatur corrupti vel
-                        nam natus similique enim sed. Beatae, nam.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, laborum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nobis error tempora aspernatur aliquam rerum?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates vero aut, odio neque atque asperiores fuga quidem, esse deserunt, ab ipsum autem repellat corporis impedit architecto libero quo eveniet delectus?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, voluptatum voluptate. Fuga id cum, alias molestias accusantium molestiae fugit facilis aperiam animi sint praesentium rem ipsa qui rerum at ut pariatur corrupti vel
-                        nam natus similique enim sed. Beatae, nam.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, laborum?</p>
+                   <?php echo html_entity_decode($post['body']); ?>
                 </div>
             </div>
             <!-- video 6 -->
             <div class="sidebar single">
                 <div class="section popular">
                     <h2 class="section-title">Popular</h2>
-                    <div class="post clearfix">
-                        <img src="assets/images/th.jpg" alt="">
+
+                    <?php foreach($posts as $p): ?>
+                        <div class="post clearfix">
+                        <img src="<?php echo 'assets/images/'.$p['image']; ?>" alt="">
                         <a href="#" class="title">
-                            <h4>How to overcome your fears</h4>
+                            <h4><?php echo $p['title'] ?></h4>
                         </a>
                     </div>
-                    <div class="post clearfix">
-                        <img src="assets/images/th.jpg" alt="">
-                        <a href="#" class="title">
-                            <h4>How to overcome your fears</h4>
-                        </a>
-                    </div>
-                    <div class="post clearfix">
-                        <img src="assets/images/th.jpg" alt="">
-                        <a href="#" class="title">
-                            <h4>How to overcome your fears</h4>
-                        </a>
-                    </div>
-                    <div class="post clearfix">
-                        <img src="assets/images/th.jpg" alt="">
-                        <a href="#" class="title">
-                            <h4>How to overcome your fears</h4>
-                        </a>
-                    </div>
-                    <div class="post clearfix">
-                        <img src="assets/images/th.jpg" alt="">
-                        <a href="#" class="title">
-                            <h4>How to overcome your fears</h4>
-                        </a>
-                    </div>
+                    <?php endforeach; ?>
+                    
+
                 </div>
                 <div class="section toppics">
                     <h2 class="section-title">Toppics</h2>
                     <ul>
-                        <li><a href="#">Poems</a></li>
-                        <li><a href="#">Quotes</a></li>
-                        <li><a href="#">Fiction</a></li>
-                        <li><a href="#">Biography</a></li>
-                        <li><a href="#">Motivation</a></li>
-                        <li><a href="#">Inspiration</a></li>
-                        <li><a href="#">Life lessons</a></li>
+                        <?php foreach($topics as $topic): ?>
+                           <li><a href="<?php echo 'index.php?t_id='.$topic['id'].'&name='.$topic['name'] ?>"><?php echo $topic['name']; ?> </a></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>

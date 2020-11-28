@@ -140,6 +140,16 @@ function getPulishedPosts()
     return $records;
 }
 
+function getPostsByTopicId($topic_id)
+{
+    global $conn;
+    $sql="select p.*, u.username from posts as p join users as u on p.user_id=u.id where p.published=? and topic_id=?";
+
+    $stmt=executeQuery($sql,['published'=>1,'topic_id'=>$topic_id]);
+    $records=$stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}
+
 
 function searchPosts($term)
 { 
