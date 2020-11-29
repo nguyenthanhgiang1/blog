@@ -232,8 +232,6 @@ a {
 .content .sidebar {
     width: 30%;
     float: left;
-    /* border: 1px dashed green; */
-    height: 300px;
 }
 
 .clearfix::after {
