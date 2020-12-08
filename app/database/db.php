@@ -11,19 +11,19 @@ function dd($value){
 }
 
 
-function executeQuery($sql,$data)
+function executeQuery($sql,$data)//truy van voi cac truong du lieu
 {
-    global $conn;
-   $stmt= $conn->prepare($sql);
-       $values=array_values($data);
-       $types=str_repeat('s',count($values));
-       $stmt->bind_param($types,...$values);
-       $stmt->execute();
-    return $stmt;
+    global $conn;// de dung bien ket noi
+   $stmt= $conn->prepare($sql);//cau lenh chuan bi php musqli
+       $values=array_values($data);//mang theo ten =>mang theo chi so lan luot 123 ma ko xap xep
+       $types=str_repeat('s',count($values));//lap lai so lan chu s
+       $stmt->bind_param($types,...$values);//truyen nhieu tham so , van chua hieu ro
+       $stmt->execute();//thuc thi
+    return $stmt; // tra ve true la thuc thi con lai la false
 }
 
 
-function selectAll($table,$conditions=[])
+function selectAll($table,$conditions=[])//truy van toan bo hoac co dieu kien
 {
     global $conn;
     $sql="select * from $table";
@@ -31,7 +31,7 @@ function selectAll($table,$conditions=[])
         $stmt=$conn->prepare($sql);
         $stmt->execute();
         $records=$stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-        return $records;
+        return $records; //tra ve toan bang cac ban ghi voi truy van khong co dieu kien
     }else{
         $i=0;
        foreach($conditions as $key => $value){
@@ -45,7 +45,7 @@ function selectAll($table,$conditions=[])
 
        $stmt=executeQuery($sql,$conditions);
        $records=$stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-       return $records;
+       return $records;  //tra ve voi 1 hoac nhieu dieu kien where
     }
 }
 
@@ -69,11 +69,11 @@ function selectOne($table,$conditions)
        $sql=$sql." limit 1";
        $stmt=executeQuery($sql,$conditions);
        $records=$stmt->get_result()->fetch_assoc();
-       return $records;
+       return $records;// tra ve voi 1 hoac nhieu dieu kien where voi  chi 1 ban ghi
 }
 
 //them moi
-function create($table,$data)
+function create($table,$data)//them du lieu vao bang
 {
     global $conn;
 
@@ -96,7 +96,7 @@ function create($table,$data)
 
 
 
-function update($table,$id,$data)
+function update($table,$id,$data)//cap nhap du lieu vao bang
 {
     global $conn;
 
@@ -120,17 +120,17 @@ function update($table,$id,$data)
 
 
 
-function delete($table,$id)
+function delete($table,$id)//xoa du lieu bang theo id
 {
     global $conn;
     $sql="delete from $table where id=?";
 
     $stmt=executeQuery($sql,['id'=>$id]);
-    return $stmt->affected_rows;
+    return $stmt->affected_rows;//tra ve so dong bi tac dong
 }
 
 
-function getPulishedPosts()
+function getPulishedPosts()//nhan cac bai da xuat ban tthi moi hien ra
 {
     global $conn;
     $sql="select p.*, u.username from posts as p join users as u on p.user_id=u.id where p.published=?";
@@ -140,7 +140,7 @@ function getPulishedPosts()
     return $records;
 }
 
-function getPostsByTopicId($topic_id)
+function getPostsByTopicId($topic_id)//lay ra bai viet theo id va xuat ban =1
 {
     global $conn;
     $sql="select p.*, u.username from posts as p join users as u on p.user_id=u.id where p.published=? and topic_id=?";
@@ -151,7 +151,7 @@ function getPostsByTopicId($topic_id)
 }
 
 
-function searchPosts($term)
+function searchPosts($term)// tim kiem bai viet theo tu khoa
 { 
     $match='%'.$term.'%';
     global $conn;
@@ -166,3 +166,4 @@ function searchPosts($term)
     $records=$stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     return $records;
 }
+

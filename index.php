@@ -1,18 +1,18 @@
 <?php
 // include("C:/xampp/htdocs/blog/app/database/db.php");
 include("C:/xampp/htdocs/blog/app/controllers/topics.php"); 
-$post=array();
-$postsTitle='Recent Posts';
+$post=array();  //mang rong
+$postsTitle='Recent Posts'; //bai viet gan day
 
-if(isset($_GET['t_id'])){
+if(isset($_GET['t_id'])){//bai viet theo chu de
     $posts=getPostsByTopicId($_GET['t_id']);
     $postsTitle="You searched for posts under'".$_GET['name']."'";
 }
-else if(isset($_POST['search-term'])){
+else if(isset($_POST['search-term'])){ //tim kien bai viet theo tu
     $postsTitle="You searched for '".$_POST['search-term']."'";
    $posts= searchPosts($_POST['search-term']);
 }else{
-    $posts=getPulishedPosts();
+    $posts=getPulishedPosts();//tat ca cac bai da xuat ban
 }
 
 
@@ -32,9 +32,8 @@ else if(isset($_POST['search-term'])){
 
 <body>
     <?php include("app/includes/header.php");?>
+    <!-- //gom logo vanav -->
     <?php include("app/includes/messages.php");?>
-    <!-- <div class="hu">a</div> -->
-    <!--  -->
     <div class="page-wrapper">
         <div class="post-slider">
             <h1 class="slider-title">Trending Posts</h1>
@@ -42,11 +41,12 @@ else if(isset($_POST['search-term'])){
             <i class="glyphicon glyphicon-chevron-right next"></i>
 
             <div class="post-wrapper">
+            <!-- dung bien gia tri toan bo bang -->
             <?php foreach($posts as $key =>$post): ?>
                 <div class="post">
-                    <img src="<?php echo 'assets/images/'.$post['image']; ?>" alt="" class="slider-image">
+                    <img src="<?php echo 'assets/images/'.$post['image']; ?>" alt="" class="slider-image"><!-- post-anh -->
                     <div class="post-info">
-                        <h4><a href="single.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></h4>
+                        <h4><a href="single.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></h4><!-- id de truy ra noi dung + tieu de  -->
                         <i class="fa fa-user-o" aria-hidden="true"><?php echo $post['username']; ?></i>&nbsp;
                         <i class="glyphicon glyphicon-calendar"><?php echo date('F j, Y',strtotime($post['created_at'])); ?></i>
                     </div>
@@ -57,6 +57,7 @@ else if(isset($_POST['search-term'])){
         <!-- nội dung -->
         <div class="content clearfix">
             <div class="main-content">
+            <!-- hien thi tuong tu nhu o tren -->
                 <h1 class="recent-post-title"><?php echo $postsTitle ?></h1>
                 <?php foreach($posts as $key =>$post): ?>
                 <div class="post clearfix">
@@ -75,6 +76,8 @@ else if(isset($_POST['search-term'])){
                 
             </div>
             <!-- ------------ -->
+            <!-- hien thi ben phai index 3/10 -->
+            <!-- form gui di tim theo tu -->
             <div class="sidebar">
                 <div class="section search">
                     <h2 class="section-title">Search</h2>
@@ -85,7 +88,7 @@ else if(isset($_POST['search-term'])){
                 <div class="section toppics">
                     <h2 class="section-title">Toppics</h2>
                     <ul>
-
+                    <!-- dung ten cua toppic -->
                     <?php foreach($topics as $key =>$topic): ?>
                         <li><a href="<?php echo 'index.php?t_id='.$topic['id'].'&name='.$topic['name'] ?>"><?php echo $topic['name']; ?> </a></li>
                        <?php endforeach; ?>

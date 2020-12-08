@@ -10,31 +10,33 @@ $name='';
 $description='';
 $topics =selectAll($table);
 
-if(isset($_POST['add-topic'])){
+if(isset($_POST['add-topic'])){//them topics
     adminOnly();
     $errors=validateTopic($_POST);
-    if(count($errors)===0){
+    if(count($errors)===0){// neu khong co loi
         unset($_POST['add-topic']);
-        $topic_id=create($table,$_POST);
+        $topic_id=create($table,$_POST);  // the du lieu
         $_SESSION['message']='Topic created successfully'; 
         $_SESSION['type']='success';
-        header('location:../../admin/topics/index.php');
+        header('location:../../admin/topics/index.php');//quay lai index
         exit();
     }else{
-        $name=$_POST['name'];
+        $name=$_POST['name'];               // ko dc tra ve loi va mo ta loi
         $description=$_POST['description'];
     }
 }
 
-if(isset($_GET['id'])){
+if(isset($_GET['id'])){ // lay 1 ban ghi tu id gom : id name mota 
     $id=$_GET['id'];
     $topic=selectOne($table,['id'=>$id]);
     $id=$topic['id'];
 $name=$topic['name'];
 $description=$topic['description'];
 }
-if(isset($_GET['del_id'])){
-    adminOnly();
+
+
+if(isset($_GET['del_id'])){//xoa theo id
+    adminOnly();  // loi chi admin
     $id=$_GET['del_id'];
     $count =delete($table,$id);
     $_SESSION['message']='Topic deleted successfully'; 
@@ -42,13 +44,15 @@ if(isset($_GET['del_id'])){
     header('location:../../admin/topics/index.php');
     exit();
 }
-if(isset($_POST['update-topic'])){
+
+
+if(isset($_POST['update-topic'])){// cap nhat
     adminOnly();
     $errors=validateTopic($_POST);
     if(count($errors)===0){
         $id=$_POST['id'];
         unset($_POST['update-topic'],$_POST['id']);
-        $topic_id=update($table,$id,$_POST);
+        $topic_id=update($table,$id,$_POST); // cap nhat them gia tri
         $_SESSION['message']='Topic updated successfully'; 
          $_SESSION['type']='success';
          header('location:../../admin/topics/index.php');
